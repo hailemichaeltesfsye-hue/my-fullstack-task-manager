@@ -17,13 +17,16 @@ const app = express();
 app.use(express.json()); // Allows our backend to read JSON data sent from a frontend
 app.use(cors());         // Enables cross-origin requests for your frontend practice files
 
-// 1. Connect to your database (All variables required from .env file)
+// 1. Connect to your database
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  database: process.env.DB_NAME,
+  ssl: {
+    rejectUnauthorized: false // This tells your app to trust the Aiven SSL certificate
+  }
 });
 
 // Connect to MySQL and automatically set up all tables
