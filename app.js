@@ -13,6 +13,9 @@ app.get('/', (req, res) => {
 });
 
 // Start the server and listen for connections
+// [Auto-Fixer Feature: Health & Status Route]
+app.get('/health', (req, res) => res.json({ status: 'ok', uptime: process.uptime(), timestamp: Date.now() }));
+
 app.listen(PORT, () => {
     console.log(`Server is successfully running on http://localhost:${PORT}`);
 });
